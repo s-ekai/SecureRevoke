@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sidebar: React.FC = () => {
+const Header: React.FC = () => {
     return (
       <div className='section-sidebar' id='sidebar'>
         <a className='section-sidebar_title'>SecureRevoke</a>
@@ -29,4 +29,4 @@ const Sidebar: React.FC = () => {
     )
   }
 
-  export default Sidebar
+  export default Header

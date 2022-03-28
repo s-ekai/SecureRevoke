@@ -1,0 +1,112 @@
+.section-sidebar {
+  width: 250px;
+  background: $color-back-green;
+  height: 100vh;
+  position: relative;
+}
+.section-sidebar_title {
+  width: 100%;
+  display: inline-block;
+  height: 70px;
+  font-family: 'Roboto',arial,sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 33px;
+  color: #FFFFFF;
+  background: $color-main;
+  padding-left: 21px;
+  padding-top: 18px;
+}
+.section-sidebar_links {
+  padding-top: 10px;
+}
+.section-sidebar_link {
+  height: 44px;
+  font-family: 'Roboto',arial,sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 20px;
+  color: #FFFFFF;
+  width: 100%;
+  display: flex;
+  padding-left: 23px;
+  cursor: pointer;
+}
+.section-sidebar_link-image {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  align-self: center;
+}
+.section-sidebar_link-text {
+  align-self: center;
+}
+.section-sidebar_link:hover {
+  background: $color-back-main-hover;
+}
+.section-sidebar_footer-links {
+  position: absolute;
+  bottom: 0;
+}
+.section-sidebar_footer-link {
+  font-family: 'Roboto',arial,sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 17px;
+  color: #CCCCCC;
+  margin-bottom: 20px;
+  display: flex;
+  padding-left: 23px;
+  cursor: pointer;
+}
+
+.section-sidebar_hr {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .section-sidebar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .section-sidebar {
+    width: 288px;
+  }
+  .section-sidebar_title {
+    width: 100%;
+    display: inline-block;
+    height: 50px;
+    font-size: 20px;
+    line-height: 27px;
+    padding-left: 0px;
+    text-align: center;
+    padding-top: 14px;
+  }
+  .section-sidebar_links {
+    padding-top: 10px;
+    padding-bottom: 58px;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.5);
+  }
+  .section-sidebar_link {
+  }
+  .section-sidebar_link-image {
+  }
+  .section-sidebar_link-text {
+  }
+  .section-sidebar_link:hover {
+    background: $color-back-main-hover;
+  }
+  .section-sidebar_footer-links {
+    position: absolute;
+    bottom: 0;
+  }
+  .section-sidebar_footer-link {
+    margin-bottom: 17px;
+  }
+}
