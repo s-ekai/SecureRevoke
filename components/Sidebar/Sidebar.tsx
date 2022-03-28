@@ -21,9 +21,9 @@ const Sidebar: React.FC = () => {
         </div>
 
         <div className='section-sidebar_footer-links'>
-          <a className='section-sidebar_footer-link'>・What is SecureRevoke?</a>
-          <a className='section-sidebar_footer-link'>・Twitter</a>
-          <a className='section-sidebar_footer-link'>・GitHub</a>
+          <a className='section-sidebar_footer-link hidden'>・What is SecureRevoke?</a>
+          <a className='section-sidebar_footer-link hidden'>・Twitter</a>
+          <a className='section-sidebar_footer-link hidden'>・GitHub</a>
         </div>
       </div>
     )

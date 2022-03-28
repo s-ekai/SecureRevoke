@@ -1,32 +1,21 @@
 import React from "react";
+import Image from 'next/image'
+import ConnectButton from "./ConnectButton";
 
 const Header: React.FC = () => {
-    return (
-      <div className='section-sidebar' id='sidebar'>
-        <a className='section-sidebar_title'>SecureRevoke</a>
+  return (
+    <div>
+      <header className='section-header-pc'>
+        <p className='section-header_link color-main'>now support only Astar Network</p>
+        <ConnectButton />
+      </header>
 
-        <div className='section-sidebar_links'>
-          <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text'>・EVM ERC20</p>
-          </a>
-          <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text' style={{ opacity: 0.5 }}>・EVM ERC271</p>
-          </a>
-          <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text' style={{ opacity: 0.5 }}>・WASM ERC20</p>
-          </a>
-          <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text' style={{ opacity: 0.5 }}>・WASM ERC271</p>
-          </a>
-        </div>
+      <header className='section-header-sp'>
+        <Image src="/images/menu.svg" className='section-header-sp_menu-image' width={20} height={20} alt="menu" />
+        <h3 className='section-header-sp_title text-center'>SecureRevoke</h3>
+      </header>
+    </div>
+  )
+}
 
-        <div className='section-sidebar_footer-links'>
-          <a className='section-sidebar_footer-link'>・What is SecureRevoke?</a>
-          <a className='section-sidebar_footer-link'>・Twitter</a>
-          <a className='section-sidebar_footer-link'>・GitHub</a>
-        </div>
-      </div>
-    )
-  }
-
-  export default Header
+export default Header

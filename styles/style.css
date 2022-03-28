@@ -982,6 +982,9 @@ body {
 .text-center {
   text-align: center; }
 
+.color-main {
+  color: #FCB156; }
+
 @media screen and (max-width: 900px) {
   .sp-900 {
     display: block; }
