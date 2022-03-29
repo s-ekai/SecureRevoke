@@ -1,0 +1,15 @@
+{
+    "name": "Astar Network Token List",
+    "timestamp": "2022-03-28T00:00:00Z",
+    "logoURI": "https://astar.network/images/brand-logo-mark.png",
+    "tokens": [
+        {
+            "name": "MATIC",
+            "symbol": "MATIC",
+            "address": "0xdd90e5e87a2081dcf0391920868ebc2ffb81a1af",
+            "chainId": 592,
+            "decimals": 18,
+            "logoURI": ""
+        }
+    ]
+}

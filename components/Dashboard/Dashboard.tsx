@@ -1,8 +1,54 @@
-import React from "react";
-import Image from 'next/image'
+import React, { useState, useEffect } from 'react'
 import Header from "../Header/Header";
+import { ClipLoader } from 'react-spinners'
+import TokenMappingList from '../../data/token-list.json';
+import { useNetwork } from 'wagmi'
+import { isSupportedNetwork } from '../common/util'
+import { useAccount } from 'wagmi'
+import { TokenMapping, TokenFromList } from '../common/interface'
+import { getAddress } from 'ethers/lib/utils'
+import TokenList from "./TokenList";
 
-const Dashboard: React.FC = () => {
+function Dashboard() {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [tokenStandard, setTokenStandard] = useState<'ERC20' | 'ERC721'>('ERC20')
+  const [inputAddress, setInputAddress] = useState<string>()
+  const [tokenMapping, setTokenMapping] = useState<TokenMapping>()
+  const [{ data: networkData }] = useNetwork()
+  const chainId = networkData?.chain?.id ?? 592
+  const networkName = networkData?.chain?.name ?? `Network with chainId ${chainId}`
+  const [{ data: accountData }] = useAccount({ fetchEns: true })
+  const connectedAddress = accountData?.address
+
+  useEffect(() => {
+    setInputAddress(connectedAddress)
+  }, [connectedAddress])
+
+  useEffect(() => {
+    loadData()
+  }, [chainId])
+
+  const loadData = async () => {
+    console.log('11')
+    const tokens: TokenFromList[] = TokenMappingList.tokens
+
+    const tokenMappingHash = {}
+    for (const token of tokens) {
+      tokenMappingHash[getAddress(token.address)] = token
+    }
+    setTokenMapping(tokenMappingHash)
+  }
+
+  if (!isSupportedNetwork(chainId)) {
+    return (
+      <div>{networkName} is not supported. Now only support Astar Network. Please change Network</div>
+    )
+  }
+
+  if (loading) {
+    return (<ClipLoader css="margin: 10px;" size={40} color={'#000'} loading={loading} />)
+  }
+
   return (
     <div className='section'>
       <Header />
@@ -13,60 +59,10 @@ const Dashboard: React.FC = () => {
 
       <div className='section-home'>
         <div className='section-home_cards'>
-          <div className='section-home_card'>
-            <div className='section-home_card-header'>
-              <div className='section-home_card-header_top'>
-                <div className='section-home_card-header_top-left'>
-                  <Image src="/images/check.png" width={20} height={20} style={{ marginRight: 0 }} alt="check mark" />
-                  lWASTR
-                </div>
-              </div>
-
-              <div className='section-home_card-header_bottom'>
-                <div className='section-home_card-header_bottom-left'>(0xf630b6d8EB75d3DC9153AAB9e4b6666d4561D6e5<Image src="/images/open-link.svg" width={14} height={14} alt="link" />)</div>
-                <div className='section-home_card-header_bottom-right pc-500'>Date: 2021-07-31 13:59</div>
-              </div>
-
-              <div className='section-home_card-header_bottom section-home_card-header_bottom-sp sp-flex-500'>
-                <div className='section-home_card-header_bottom-right'>Date: 2021-07-31 13:59</div>
-              </div>
-            </div>
-
-            <div className="section-home_card-body display-block">
-              <div className="section-home_card-body_left-header-link background-white">Transaction: 0xf630b6d8EB75d3DC9153AAB9e4b6666d4561D6e5<Image src="/images/open-link.svg" width={14} height={14} alt="link" /></div>
-              <div className="section-home_card-body_left-header-link background-white">Allowance: 100</div>
-              <div className="section-home_card-body_left-header-link background-white">Curren Balance: 0.00</div>
-
-              <div className="button background-main" style={{ marginRight: 0, backgroundColor: 'gray' }}>Revoked</div>
-            </div>
-          </div>
-
-          <div className='section-home_card'>
-            <div className='section-home_card-header'>
-              <div className='section-home_card-header_top'>
-                <div className='section-home_card-header_top-left'>
-                  MATIC
-                </div>
-              </div>
-
-              <div className='section-home_card-header_bottom'>
-                <div className='section-home_card-header_bottom-left'>(0xf630b6d8EB75d3DC9153AAB9e4b6666d4561D6e5<Image src="/images/open-link.svg" width={14} height={14} alt="link" />)</div>
-                <div className='section-home_card-header_bottom-right pc-500'>Date: 2021-07-31 13:59</div>
-              </div>
-
-              <div className='section-home_card-header_bottom section-home_card-header_bottom-sp sp-flex-500'>
-                <div className='section-home_card-header_bottom-right'>Date: 2021-07-31 13:59</div>
-              </div>
-            </div>
-
-            <div className="section-home_card-body" style={{ display: 'block' }}>
-              <div className="section-home_card-body_left-header-link" style={{ backgroundColor: 'white' }}>Transaction: 0xf630b6d8EB75d3DC9153AAB9e4b6666d4561D6e5<Image src="/images/open-link.svg" width={14} height={14} alt="link" /></div>
-              <div className="section-home_card-body_left-header-link" style={{ backgroundColor: 'white' }}>Allowance: 100</div>
-              <div className="section-home_card-body_left-header-link" style={{ backgroundColor: 'white' }}>Curren Balance: 0.00</div>
-
-              <div className="button background-main" style={{ marginRight: 0 }}>Revoke</div>
-            </div>
-          </div>
+          <TokenList
+            inputAddress={inputAddress}
+            tokenMapping={tokenMapping}
+          />
         </div>
       </div>
     </div>
