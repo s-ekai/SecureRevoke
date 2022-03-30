@@ -45,10 +45,14 @@ export const getLogsRecursively = async (
   currentBlock: number
 ): Promise<Log[]> => {
   console.log(currentBlock)
-  const nextBlock = currentBlock + 20000;
+  let previousBlock = currentBlock - 20000;
 
-  if (currentBlock <= toBlock) {
-    return [...(await getLogs(provider, baseFilter, currentBlock, nextBlock)), ...(await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, nextBlock))]
+  if (previousBlock < 0) {
+    previousBlock = 0
+  }
+
+  if (previousBlock != 0) {
+    return [...(await getLogs(provider, baseFilter, previousBlock, currentBlock)), ...(await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, previousBlock))]
   } else {
     return [];
   }

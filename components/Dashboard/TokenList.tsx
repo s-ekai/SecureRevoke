@@ -40,7 +40,7 @@ function TokenList({
         topics: [ERC20Interface.getEventTopic('Approval'), hexZeroPad(inputAddress, 32)]
       }
     // TODO: it is too slow, i have to improve
-    const foundApprovalEvents = await getLogsRecursively(provider, approvalFilter, 0, latestBlockNumber, 0)
+    const foundApprovalEvents = await getLogsRecursively(provider, approvalFilter, 0, latestBlockNumber, latestBlockNumber)
 
     setApprovalEvents(foundApprovalEvents)
 
