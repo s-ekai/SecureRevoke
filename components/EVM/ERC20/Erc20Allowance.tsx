@@ -104,7 +104,7 @@ function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke }: P
     ? (<a className="monospace" href={`${explorerBaseUrl}/${spender}`}>{spenderDisplay}</a>)
     : spenderDisplay
 
-  const canUpdate = inputAddress === accountData?.address
+  const canUpdate = inputAddress === accountData?.address && formatAllowance(allowance, token.decimals, token.totalSupply) !== '0.000'
 
   return (
 

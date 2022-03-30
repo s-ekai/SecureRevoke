@@ -37,6 +37,24 @@ export const getLogs = async (
   }
 };
 
+export const getLogsRecursively = async (
+  provider: providers.Provider,
+  baseFilter: Filter,
+  fromBlock: number,
+  toBlock: number,
+  currentBlock: number
+): Promise<Log[]> => {
+  console.log(currentBlock)
+  const nextBlock = currentBlock + 20000;
+
+  if (currentBlock <= toBlock) {
+    return [...(await getLogs(provider, baseFilter, currentBlock, nextBlock)), ...(await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, nextBlock))]
+  } else {
+    return [];
+  }
+};
+
+
 export const convertString = async (promise: Promise<any>) => String(await promise)
 
 export function toFloat(n: number, decimals: number): string {

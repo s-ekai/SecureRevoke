@@ -5,7 +5,7 @@ import Erc20TokenList from '../EVM/ERC20/Erc20TokenList'
 import { hexZeroPad, Interface } from 'ethers/lib/utils'
 import { ERC20 } from '../common/abis'
 
-import { getLogs } from '../common/util'
+import { getLogs, getLogsRecursively } from '../common/util'
 import { ClipLoader } from 'react-spinners'
 import { useProvider } from 'wagmi'
 import { providers as multicall } from '@0xsequence/multicall'
@@ -34,11 +34,13 @@ function TokenList({
     if (!(provider instanceof multicall.MulticallProvider)) return
 
     const ERC20Interface = new Interface(ERC20)
+    const latestBlockNumber = await provider.getBlockNumber()
 
     const approvalFilter = {
         topics: [ERC20Interface.getEventTopic('Approval'), hexZeroPad(inputAddress, 32)]
       }
-    const foundApprovalEvents = await getLogs(provider, approvalFilter, 540000, 560000)
+    // TODO: it is too slow, i have to improve
+    const foundApprovalEvents = await getLogsRecursively(provider, approvalFilter, 0, latestBlockNumber, 0)
 
     setApprovalEvents(foundApprovalEvents)
 
