@@ -44,7 +44,6 @@ export const getLogsRecursively = async (
   toBlock: number,
   currentBlock: number
 ): Promise<Log[]> => {
-  console.log(currentBlock)
   let previousBlock = currentBlock - 20000;
 
   if (previousBlock < 0) {

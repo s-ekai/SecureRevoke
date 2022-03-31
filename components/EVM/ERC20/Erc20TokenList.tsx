@@ -42,14 +42,10 @@ function Erc20TokenList({
 
     const allEvents = approvalEvents
 
-    console.log(allEvents)
-
     // Filter unique token contract addresses and convert all events to Contract instances
     const tokenContracts = allEvents
       .filter((event, i) => i === allEvents.findIndex((other) => event.address === other.address))
       .map((event) => new Contract(getAddress(event.address), ERC20, provider))
-
-    console.log(tokenContracts)
 
     const unsortedTokens = await Promise.all(
       tokenContracts.map(async (contract) => {

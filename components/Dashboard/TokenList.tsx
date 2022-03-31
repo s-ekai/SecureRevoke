@@ -34,7 +34,6 @@ function TokenList({
   }, [inputAddress, provider])
 
   const loadData = async () => {
-    console.log(inputAddress)
     if (!inputAddress) return
     if (!(provider instanceof multicall.MulticallProvider)) return
 
@@ -53,7 +52,6 @@ function TokenList({
       toBlock: number,
       currentBlock: number
     ): Promise<Log[]> => {
-      console.log(currentBlock)
       // INFO: more than 20000, timeout error happend
       let previousBlock = currentBlock - 20000;
       setCurrentBlock(previousBlock)

@@ -29,7 +29,6 @@ function Dashboard() {
   }, [chainId])
 
   const loadData = async () => {
-    console.log('11')
     const tokens: TokenFromList[] = TokenMappingList.tokens
 
     const tokenMappingHash = {}
