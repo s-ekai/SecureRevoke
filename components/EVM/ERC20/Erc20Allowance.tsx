@@ -93,7 +93,7 @@ function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke }: P
   const spenderDisplay = ensSpender || spender
   const shortenedSpenderDisplay = ensSpender || shortenAddress(spender)
 
-  const explorerBaseUrl = 'https://astar.subscan.io/address'
+  const explorerBaseUrl = 'https://blockscout.com/astar/address/'
 
   const shortenedLink = explorerBaseUrl
     ? (<a className="monospace" href={`${explorerBaseUrl}/${spender}`}>{shortenedSpenderDisplay}</a>)
@@ -122,13 +122,13 @@ function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke }: P
         </div>
 
         <div className='section-home_card-header_bottom'>
-          <div className='section-home_card-header_bottom-left'>({ token.contract.address }<Image src="/images/open-link.svg" width={14} height={14} alt="link" />)</div>
+          <div className='section-home_card-header_bottom-left'>(<a href={`${explorerBaseUrl}/${token.contract.address}`} style={{ color: '#999999' }} target='_blank'>{ token.contract.address }</a> <Image src="/images/open-link.svg" width={14} height={14} alt="link" />)</div>
         </div>
 
       </div>
 
       <div className="section-home_card-body display-block">
-        <div className="section-home_card-body_left-header-link background-white">Spender: { spenderDisplay }</div>
+        <div className="section-home_card-body_left-header-link background-white">Spender: <a href={`${explorerBaseUrl}/${spenderDisplay}`} style={{ color: 'black' }} target='_blank'>{ spenderDisplay }<Image src="/images/open-link.svg" width={14} height={14} alt="link" /></a></div>
         <div className="section-home_card-body_left-header-link background-white">Allowance: {formatAllowance(updatedAllowance ?? allowance, token.decimals, token.totalSupply)}</div>
         <div className="section-home_card-body_left-header-link background-white">Curren Balance: {toFloat(Number(token.balance), token.decimals)}</div>
 
