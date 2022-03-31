@@ -3,9 +3,8 @@ import { ClipLoader } from 'react-spinners'
 import { Erc20TokenData } from '../../common/interface'
 import { Allowance } from './interfaces'
 import { compareBN, toFloat } from '../../common/util'
-import Erc20AllowanceList from './Erc20AllowanceList'
 import Erc20Allowance from './Erc20Allowance'
-import { formatAllowance, getAllowancesFromApprovals } from './util'
+import { getAllowancesFromApprovals } from './util'
 
 interface Props {
   token: Erc20TokenData
