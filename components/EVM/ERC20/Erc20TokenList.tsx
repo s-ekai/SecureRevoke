@@ -31,11 +31,12 @@ function Erc20TokenList({
 
   useEffect(() => {
     loadData()
-  }, [inputAddress, provider])
+  }, [inputAddress, provider, approvalEvents])
 
   const loadData = async () => {
     if (!inputAddress) return
     if (!(provider instanceof multicall.MulticallProvider)) return
+    if (!approvalEvents) return
 
     setLoading(true)
 

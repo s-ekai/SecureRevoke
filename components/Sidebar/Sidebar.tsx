@@ -3,7 +3,7 @@ import React from "react";
 const Sidebar: React.FC = () => {
     return (
       <div className='section-sidebar' id='sidebar'>
-        <a className='section-sidebar_title'>SecureRevoke</a>
+        <a className='section-sidebar_title'>SecureRevoke β</a>
 
         <div className='section-sidebar_links'>
           <a className='section-sidebar_link'>

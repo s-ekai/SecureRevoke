@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Log } from '@ethersproject/abstract-provider'
+import { Log, Filter } from '@ethersproject/abstract-provider'
 import { TokenMapping } from '../common/interface'
 import Erc20TokenList from '../EVM/ERC20/Erc20TokenList'
 import { hexZeroPad, Interface } from 'ethers/lib/utils'
 import { ERC20 } from '../common/abis'
 
-import { getLogs, getLogsRecursively } from '../common/util'
+import { getLogs } from '../common/util'
 import { ClipLoader } from 'react-spinners'
 import { useProvider } from 'wagmi'
 import { providers as multicall } from '@0xsequence/multicall'
+import { providers } from 'ethers'
+import { ProgressBar } from 'react-bootstrap'
 
 interface Props {
   inputAddress?: string
@@ -19,8 +21,11 @@ function TokenList({
   inputAddress,
   tokenMapping,
 }: Props) {
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(false)
   const [approvalEvents, setApprovalEvents] = useState<Log[]>()
+  const [maxBlock, setMaxblock] = useState<number>(0)
+  const [currentBlock, setCurrentBlock] = useState<number>(0)
+
 
   const provider = useProvider()
 
@@ -35,16 +40,44 @@ function TokenList({
 
     const ERC20Interface = new Interface(ERC20)
     const latestBlockNumber = await provider.getBlockNumber()
+    setMaxblock(latestBlockNumber)
 
     const approvalFilter = {
         topics: [ERC20Interface.getEventTopic('Approval'), hexZeroPad(inputAddress, 32)]
       }
-    // TODO: it is too slow, i have to improve
-    const foundApprovalEvents = await getLogsRecursively(provider, approvalFilter, 0, latestBlockNumber, latestBlockNumber)
+    // TODO: it is too slow, i have to improve. MUST: improve
+    const getLogsRecursively = async (
+      provider: providers.Provider,
+      baseFilter: Filter,
+      fromBlock: number,
+      toBlock: number,
+      currentBlock: number
+    ): Promise<Log[]> => {
+      console.log(currentBlock)
+      // INFO: more than 20000, timeout error happend
+      let previousBlock = currentBlock - 20000;
+      setCurrentBlock(previousBlock)
 
-    setApprovalEvents(foundApprovalEvents)
+      if (previousBlock < 0) {
+        previousBlock = 0
+      }
 
-    setLoading(false)
+      if (previousBlock != 0) {
+        const tmpLogs = await getLogs(provider, baseFilter, previousBlock, currentBlock);
+
+        if (tmpLogs.length > 0) {
+          setApprovalEvents(currentApprovalEvents => currentApprovalEvents ? [...currentApprovalEvents, ...tmpLogs] : tmpLogs)
+        }
+
+        const moreLogs = await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, previousBlock)
+        return [...tmpLogs, ...moreLogs]
+      } else {
+        return [];
+      }
+    };
+
+    getLogsRecursively(provider, approvalFilter, 0, latestBlockNumber, latestBlockNumber)
+
   }
 
   if (!inputAddress) {
@@ -56,11 +89,16 @@ function TokenList({
   }
 
   return (
-    <Erc20TokenList
-      inputAddress={inputAddress}
-      tokenMapping={tokenMapping}
-      approvalEvents={approvalEvents}
-    />
+    <div>
+      <span>Searching { maxBlock - currentBlock } Blocks / { maxBlock } Blocks</span>
+      <ProgressBar variant="warning" now={Math.floor((maxBlock - currentBlock) / maxBlock * 100)} label={`${Math.floor((maxBlock - currentBlock) / maxBlock * 100) >= 100 ? 100 : Math.floor((maxBlock - currentBlock) / maxBlock * 100) }%`} />
+      <br />
+      <Erc20TokenList
+        inputAddress={inputAddress}
+        tokenMapping={tokenMapping}
+        approvalEvents={approvalEvents}
+      />
+    </div>
   );
 }
 
