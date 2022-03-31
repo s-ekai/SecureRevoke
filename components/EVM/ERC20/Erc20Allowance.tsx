@@ -20,7 +20,7 @@ interface Props {
 function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke }: Props) {
   const [loading, setLoading] = useState<boolean>(true)
   const [ensSpender, setEnsSpender] = useState<string | undefined>()
-  const [spenderAppName, setSpenderAppName] = useState<string | undefined>()
+  // const [spenderAppName, setSpenderAppName] = useState<string | undefined>()
   const [updatedAllowance, setUpdatedAllowance] = useState<string | undefined>()
 
   const provider = useProvider()
@@ -40,8 +40,8 @@ function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke }: P
     setEnsSpender(newEnsSpender)
 
     const dappListNetworkName = getDappListName(chainId)
-    const newSpenderAppName = await addressToAppName(spender, dappListNetworkName)
-    setSpenderAppName(newSpenderAppName)
+    // const newSpenderAppName = await addressToAppName(spender, dappListNetworkName)
+    // setSpenderAppName(newSpenderAppName)
 
     setLoading(false)
   }
@@ -90,8 +90,8 @@ function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke }: P
     return (<div><ClipLoader size={10} color={'#000'} loading={loading} /></div>)
   }
 
-  const spenderDisplay = spenderAppName || ensSpender || spender
-  const shortenedSpenderDisplay = spenderAppName || ensSpender || shortenAddress(spender)
+  const spenderDisplay = ensSpender || spender
+  const shortenedSpenderDisplay = ensSpender || shortenAddress(spender)
 
   const explorerBaseUrl = 'https://astar.subscan.io/address'
 

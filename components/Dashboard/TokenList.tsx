@@ -63,16 +63,14 @@ function TokenList({
       }
 
       if (previousBlock != 0) {
-        const tmpLogs = await getLogs(provider, baseFilter, previousBlock, currentBlock);
+        const logs = await getLogs(provider, baseFilter, previousBlock, currentBlock);
 
-        if (tmpLogs.length > 0) {
-          setApprovalEvents(currentApprovalEvents => currentApprovalEvents ? [...currentApprovalEvents, ...tmpLogs] : tmpLogs)
+        if (logs.length > 0) {
+          setApprovalEvents(currentApprovalEvents => currentApprovalEvents ? [...currentApprovalEvents, ...logs] : logs)
         }
 
-        const moreLogs = await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, previousBlock)
-        return [...tmpLogs, ...moreLogs]
+        await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, previousBlock)
       } else {
-        return [];
       }
     };
 
@@ -90,7 +88,7 @@ function TokenList({
 
   return (
     <div>
-      <span>Searching { maxBlock - currentBlock } Blocks / { maxBlock } Blocks</span>
+      <span>Searching { (maxBlock - currentBlock) >= maxBlock ? maxBlock : maxBlock - currentBlock } Blocks / { maxBlock } Blocks</span>
       <ProgressBar variant="warning" now={Math.floor((maxBlock - currentBlock) / maxBlock * 100)} label={`${Math.floor((maxBlock - currentBlock) / maxBlock * 100) >= 100 ? 100 : Math.floor((maxBlock - currentBlock) / maxBlock * 100) }%`} />
       <br />
       <Erc20TokenList
