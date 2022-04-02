@@ -11,8 +11,8 @@ const Header: React.FC = () => {
       </header>
 
       <header className='section-header-sp'>
-        <Image src="/images/menu.svg" className='section-header-sp_menu-image' width={20} height={20} alt="menu" />
-        <h3 className='section-header-sp_title text-center'>SecureRevoke</h3>
+        <h3 className='section-header-sp_title text-center section-header_link'>SecureRevoke β</h3>
+        <ConnectButton />
       </header>
     </div>
   )

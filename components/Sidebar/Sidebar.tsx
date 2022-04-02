@@ -7,16 +7,10 @@ const Sidebar: React.FC = () => {
 
         <div className='section-sidebar_links'>
           <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text'>・EVM ERC20</p>
+            <p className='section-sidebar_link-text'>・ERC20</p>
           </a>
           <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text' style={{ opacity: 0.5 }}>・EVM ERC271</p>
-          </a>
-          <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text' style={{ opacity: 0.5 }}>・WASM ERC20</p>
-          </a>
-          <a className='section-sidebar_link'>
-            <p className='section-sidebar_link-text' style={{ opacity: 0.5 }}>・WASM ERC271</p>
+            <p className='section-sidebar_link-text' style={{ opacity: 0.5 }}>・ERC271</p>
           </a>
         </div>
 

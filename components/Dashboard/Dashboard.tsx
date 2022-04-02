@@ -55,15 +55,22 @@ function Dashboard() {
       <Header />
 
       <div className='section-common_header'>
-        <h3 className='section-common_header-title'>EVM ERC20 Approvals</h3>
+        <h3 className='section-common_header-title'>ERC20 Approvals</h3>
       </div>
 
       <div className='section-home'>
         <div className='section-home_cards'>
-          <TokenList
-            inputAddress={inputAddress}
-            tokenMapping={tokenMapping}
-          />
+          {
+            inputAddress === undefined ?
+            <div className='text-normal'>
+              <p>Please connect your wallet.</p>
+              <p>You can protect your token balances on Astar Network.</p>
+            </div>
+            : <TokenList
+              inputAddress={inputAddress}
+              tokenMapping={tokenMapping}
+            />
+          }
         </div>
       </div>
     </div>

@@ -409,7 +409,9 @@ body {
     border: none;
     background-repeat: no-repeat;
     background-size: 12px 10px;
-    background-position: right 10px center; } }
+    background-position: right 10px center; }
+  .section-header_link {
+    margin-top: 8px; } }
 
 .section-sidebar {
   width: 250px;
@@ -1007,6 +1009,13 @@ body {
   white-space: nowrap;
   background-color: #FCB156;
   transition: width .6s ease; }
+
+.text-normal {
+  font-family: 'Roboto',arial,sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 23px; }
 
 @media screen and (max-width: 900px) {
   .sp-900 {
