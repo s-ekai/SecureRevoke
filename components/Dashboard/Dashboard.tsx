@@ -42,7 +42,15 @@ function Dashboard() {
 
   if (!isSupportedNetwork(chainId)) {
     return (
-      <div>{networkName} is not supported. Now only support Astar Network. Please change Network</div>
+      <div className='section'>
+        <Header />
+        <div className='section-common_header'>
+          <h3 className='section-common_header-title'>Please change Network</h3>
+        </div>
+        <div className='section-home'>
+          <div className='text-normal'>{networkName} is not supported. Only support Astar Network.</div>
+        </div>
+      </div>
     )
   }
 
