@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       openGraph={{
         url: "https:///secure-revoke.com/",
         images: [{
-          url: "https://revoke.cash/secure-revoke.png",
+          url: "https://secure-revoke.com/secure-revoke.png",
           width: 1600,
           height: 900,
         }],
