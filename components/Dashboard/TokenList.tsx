@@ -21,7 +21,7 @@ function TokenList({
   inputAddress,
   tokenMapping,
 }: Props) {
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
   const [approvalEvents, setApprovalEvents] = useState<Log[]>()
   const [maxBlock, setMaxblock] = useState<number>(0)
   const [currentBlock, setCurrentBlock] = useState<number>(0)
@@ -34,8 +34,11 @@ function TokenList({
   }, [inputAddress, provider])
 
   const loadData = async () => {
+
     if (!inputAddress) return
     if (!(provider instanceof multicall.MulticallProvider)) return
+
+    setLoading(true)
 
     const ERC20Interface = new Interface(ERC20)
     const latestBlockNumber = await provider.getBlockNumber()
@@ -65,6 +68,7 @@ function TokenList({
 
         if (logs.length > 0) {
           setApprovalEvents(currentApprovalEvents => currentApprovalEvents ? [...currentApprovalEvents, ...logs] : logs)
+           setLoading(false)
         }
 
         await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, previousBlock)

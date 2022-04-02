@@ -29,6 +29,7 @@ function Dashboard() {
   }, [chainId])
 
   const loadData = async () => {
+    setLoading(true)
     const tokens: TokenFromList[] = TokenMappingList.tokens
 
     const tokenMappingHash = {}
@@ -36,6 +37,7 @@ function Dashboard() {
       tokenMappingHash[getAddress(token.address)] = token
     }
     setTokenMapping(tokenMappingHash)
+    setLoading(false)
   }
 
   if (!isSupportedNetwork(chainId)) {
