@@ -89,7 +89,7 @@ function TokenList({
 
   return (
     <div>
-      <span>Searching { (maxBlock - currentBlock) >= maxBlock ? maxBlock : maxBlock - currentBlock } Blocks / { maxBlock } Blocks</span>
+      <span className='text-normal'>Searching { (maxBlock - currentBlock) >= maxBlock ? maxBlock : maxBlock - currentBlock } Blocks / { maxBlock } Blocks</span>
       <ProgressBar variant="warning" now={Math.floor((maxBlock - currentBlock) / maxBlock * 100)} label={`${Math.floor((maxBlock - currentBlock) / maxBlock * 100) >= 100 ? 100 : Math.floor((maxBlock - currentBlock) / maxBlock * 100) }%`} />
       <br />
       <Erc20TokenList
