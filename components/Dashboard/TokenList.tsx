@@ -54,7 +54,7 @@ function TokenList({
       fromBlock: number,
       toBlock: number,
       currentBlock: number
-    ): Promise<Log[]> => {
+    ): Promise<void> => {
       // INFO: more than 20000, timeout error happend
       let previousBlock = currentBlock - 20000;
       setCurrentBlock(previousBlock)
@@ -72,7 +72,6 @@ function TokenList({
         }
 
         await getLogsRecursively(provider, baseFilter, fromBlock, toBlock, previousBlock)
-      } else {
       }
     };
 

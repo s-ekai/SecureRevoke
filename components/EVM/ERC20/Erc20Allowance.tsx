@@ -122,13 +122,13 @@ function Erc20Allowance({ spender, allowance, inputAddress, token, onRevoke }: P
         </div>
 
         <div className='section-home_card-header_bottom'>
-          <div className='section-home_card-header_bottom-left'>(<a href={`${explorerBaseUrl}/${token.contract.address}`} style={{ color: '#999999' }} target='_blank'>{ token.contract.address }</a> <Image src="/images/open-link.svg" width={14} height={14} alt="link" />)</div>
+          <div className='section-home_card-header_bottom-left'>(<a href={`${explorerBaseUrl}/${token.contract.address}`} style={{ color: '#999999' }} target='_blank' rel="noopener noreferrer">{ token.contract.address }</a> <Image src="/images/open-link.svg" width={14} height={14} alt="link" />)</div>
         </div>
 
       </div>
 
       <div className="section-home_card-body display-block">
-        <div className="section-home_card-body_left-header-link background-white">Spender: <a href={`${explorerBaseUrl}/${spenderDisplay}`} style={{ color: 'black' }} target='_blank'>{ spenderDisplay }<Image src="/images/open-link.svg" width={14} height={14} alt="link" /></a></div>
+        <div className="section-home_card-body_left-header-link background-white">Spender: <a href={`${explorerBaseUrl}/${spenderDisplay}`} style={{ color: 'black' }} target='_blank' rel="noopener noreferrer">{ spenderDisplay }<Image src="/images/open-link.svg" width={14} height={14} alt="link" /></a></div>
         <div className="section-home_card-body_left-header-link background-white">Allowance: {formatAllowance(updatedAllowance ?? allowance, token.decimals, token.totalSupply)}</div>
         <div className="section-home_card-body_left-header-link background-white">Curren Balance: {toFloat(Number(token.balance), token.decimals)}</div>
 
