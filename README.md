@@ -26,7 +26,7 @@ v16.10.0
 
 2. Clone this repository. Change directory to SecureRevoke.
 ```
-git clone https://github.com/Masayukiii/SecureRevoke.git
+git clone https://github.com/s-ekai/SecureRevoke.git
 cd SecureRevoke
 ```
 
