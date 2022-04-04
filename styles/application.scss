@@ -17,7 +17,6 @@ body {
   overflow-y: scroll;
   height: 100vh;
 }
-
 .main-wrapper {
   display: flex;
   position: relative;
@@ -43,31 +42,6 @@ body {
   margin-right: auto;
   align-self: flex-end;
 }
-.section-common_header-clock {
-  display: flex;
-}
-.section-common_header-clock_date {
-  font-family: 'Roboto',arial,sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 19px;
-  text-align: right;
-  color: #000000;
-  margin-right: 11px;
-  align-self: flex-end;
-}
-.section-common_header-clock_time {
-  font-family: 'Roboto',arial,sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 48px;
-  text-align: right;
-  color: #000000;
-  align-self: flex-end;
-}
-
 .section-footer {
   height: 60px;
   background: $color-back-green;
@@ -97,7 +71,6 @@ body {
   text-align: center;
   color: #FFFFFF;
 }
-
 .pc-500 {
   display: block;
 }
@@ -110,63 +83,23 @@ body {
 .pc-900 {
   display: block;
 }
-
-.section-common_header_button {
-  height: 38px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Roboto',arial,sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  background: #FFFFFF;
-  border-radius: 5px;
-}
-
-.section-common_header_button-new {
-  height: 38px;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Roboto',arial,sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
-  background: $color-orange;
-  border-radius: 5px;
-  color: #FFFFFF;
-}
-.section-common_header_button-link {
-  color: $color-main;
-}
-
 .background-main {
   background: $color-main;
   color: white;
 }
-
 .background-red {
   background: $color-red;
   color: white;
 }
-
 .background-white {
   background-color: white;
 }
-
 .display-block {
   display: block;
 }
-
 .pointer {
   cursor: pointer;
 }
-
 .button {
   font-family: 'Roboto',arial,sans-serif;
   font-style: normal;
@@ -182,7 +115,6 @@ body {
   justify-content: center;
   margin: 0 auto;
 }
-
 .wallet-button {
   margin-left: auto;
   width:140px;
@@ -192,15 +124,12 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 .text-center {
   text-align: center;
 }
-
 .color-main {
   color: $color-main;
 }
-
 .progress {
   display: flex;
   height: 1rem;
@@ -209,12 +138,10 @@ body {
   background-color: white;
   border-radius: 0.25rem;
 }
-
 .bg-warning {
   --bs-bg-opacity: 1;
   background-color: $color-main;
 }
-
 .progress-bar {
   display: flex;
   flex-direction: column;
@@ -226,7 +153,6 @@ body {
   background-color: $color-main;
   transition: width .6s ease;
 }
-
 .text-normal {
   font-family: 'Roboto',arial,sans-serif;
   font-style: normal;
@@ -240,11 +166,9 @@ body {
   .sp-900 {
     display: block;
   }
-
   .pc-900 {
     display: none;
   }
-
   .section-sidebar {
     display: none;
   }
@@ -264,7 +188,6 @@ body {
     padding-left: 18px;
     margin-bottom: 20px;
   }
-
   .section-common_header-title {
     font-family: 'Roboto',arial,sans-serif;
     font-style: normal;
@@ -273,25 +196,6 @@ body {
     line-height: 150%;
     color: #000000;
     align-self: center;
-  }
-
-  .section-common_header-clock {
-    display: none;
-  }
-
-  .section-common_header_button {
-    height: auto;
-    font-size: 14px;
-    line-height: 17px;
-    padding: 0;
-  }
-  .section-common_header_button-link {
-    color: $color-main;
-  }
-
-  .section-common_header_button-new {
-    height: 28px;
-    padding: 5px 10px;
   }
 }
 

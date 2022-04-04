@@ -34,12 +34,6 @@
   padding-left: 23px;
   cursor: pointer;
 }
-.section-sidebar_link-image {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-  align-self: center;
-}
 .section-sidebar_link-text {
   align-self: center;
 }
@@ -61,10 +55,6 @@
   display: flex;
   padding-left: 23px;
   cursor: pointer;
-}
-
-.section-sidebar_hr {
-  display: none;
 }
 
 @media screen and (max-width: 900px) {
@@ -92,12 +82,6 @@
     padding-top: 10px;
     padding-bottom: 58px;
     border-bottom: 1px solid rgba(221, 221, 221, 0.5);
-  }
-  .section-sidebar_link {
-  }
-  .section-sidebar_link-image {
-  }
-  .section-sidebar_link-text {
   }
   .section-sidebar_link:hover {
     background: $color-back-main-hover;
