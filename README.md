@@ -5,6 +5,8 @@
 
 Safe and Secure Revoke System on Astar Network. You can protect your token balances.
 
+site url: http://secure-revoke.com/
+
 This repository was created by copying [rkalis/revoke.cash](https://github.com/rkalis/revoke.cash).
 And modified to work only with Astar Network.
 
